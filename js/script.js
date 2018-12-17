@@ -2,6 +2,8 @@ $(function() {
 
   var $playerDiv = $("#player");
   var $cpuDiv = $("#cpu");
+  var cpuDefeated = false;
+
 
   // CPU object.
   var cpu = {
@@ -13,14 +15,13 @@ $(function() {
 
   }
 
-  var CPU = function(image, punchPower, hitPoints, punchOutput) {
+  var CPU = function(image, punchPower, hitPoints) {
     this.image = image;
     this.punchPower = punchPower;
     this.hitPoints = hitPoints;
     this.taunt = function() {
       console.log("TAUNT!");
     };
-    this.punchOutput = punchOutput;
     this.punch1 = function() {
       $cpuDiv.animate({
         'left' : "48%"
@@ -45,15 +46,28 @@ $(function() {
     };
   }
 
-  
-  var punchOutput = Math.floor((Math.random() * 6) + 1);
-  var mikeTyson = new CPU("mikeSpritesheet", 20, 200, punchOutput);
-  //console.log(mikeTyson.punchOutput);
-  // setInterval(mikeTyson.punch1, mikeTyson.punchOutput*1000);
-  setInterval(mikeTyson.punch2, mikeTyson.punchOutput*1000);
-
-
+  // Set up game environment.
   setUpKeyHandler();
+  // var punchOutput = Math.floor((Math.random() * 6) + 1);
+
+  var mikeTyson = new CPU("mikeSpritesheet", 20, 200);
+  cpuBehaviour();
+  // setInterval(mikeTyson.punch2, Math.floor((Math.random() * 6) + 1)*1000);
+
+  // console.log(punchOutput);
+  // console.log(mikeTyson.punchOutput);
+  // setInterval(mikeTyson.punch1, mikeTyson.punchOutput*1000);
+
+  function cpuBehaviour() {
+    var rand = Math.floor((Math.random() * 6) + 1);
+    console.log(rand);
+    if (rand >= 3) {
+      mikeTyson.punch1();
+    } else {
+      mikeTyson.punch2();
+    }
+    setTimeout(cpuBehaviour, rand * 1000);
+}
 
   // Event handler for player.
   function setUpKeyHandler() {
