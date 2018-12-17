@@ -1,7 +1,56 @@
 $(function() {
 
-  var $player = $("#player");
-  var $cpu = $("#cpu");
+  var $playerDiv = $("#player");
+  var $cpuDiv = $("#cpu");
+
+  // CPU object.
+  var cpu = {
+    "image": null,
+    "punchPower": null,
+    "hitPoints": null,
+    "taunt": null,
+    "punchOutput": null
+
+  }
+
+  var CPU = function(image, punchPower, hitPoints, punchOutput) {
+    this.image = image;
+    this.punchPower = punchPower;
+    this.hitPoints = hitPoints;
+    this.taunt = function() {
+      console.log("TAUNT!");
+    };
+    this.punchOutput = punchOutput;
+    this.punch1 = function() {
+      $cpuDiv.animate({
+        'left' : "48%"
+      });
+      $cpuDiv.animate({
+        'top' : "47%"
+      });
+      $cpuDiv.animate({
+        'top' : "35%"
+      });
+      $cpuDiv.animate({
+        'left' : "50%"
+      });
+    };
+    this.punch2 = function() {
+      $cpuDiv.animate({
+        'top' : "47%"
+      }, "fast");
+      $cpuDiv.animate({
+        'top' : "35%"
+      }, "fast");
+    };
+  }
+
+  
+  var punchOutput = Math.floor((Math.random() * 6) + 1);
+  var mikeTyson = new CPU("mikeSpritesheet", 20, 200, punchOutput);
+  //console.log(mikeTyson.punchOutput);
+  // setInterval(mikeTyson.punch1, mikeTyson.punchOutput*1000);
+  setInterval(mikeTyson.punch2, mikeTyson.punchOutput*1000);
 
 
   setUpKeyHandler();
@@ -49,10 +98,10 @@ $(function() {
   function slipLeft() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
-    $player.animate({
+    $playerDiv.animate({
       'left' : "42%"
     });
-    $player.animate({
+    $playerDiv.animate({
       'left' : "47%"
     });
     // Don't allow any keys to be pressed for a fraction of a second.
@@ -63,10 +112,10 @@ $(function() {
   function slipRight() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
-    $player.animate({
+    $playerDiv.animate({
       'left' : "52%"
     });
-    $player.animate({
+    $playerDiv.animate({
       'left' : "47%"
     });
     // Don't allow any keys to be pressed for a fraction of a second.
@@ -76,10 +125,10 @@ $(function() {
   function playerJab() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
-    $player.animate({
+    $playerDiv.animate({
       'top' : "42%"
     }, "fast");
-    $player.animate({
+    $playerDiv.animate({
       'top' : "50%"
     }, "fast");
     // Don't allow any keys to be pressed for half a second.
@@ -89,10 +138,10 @@ $(function() {
   function playerRightCross() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
-    $player.animate({
+    $playerDiv.animate({
       'top' : "42%"
     });
-    $player.animate({
+    $playerDiv.animate({
       'top' : "50%"
     });
     // Don't allow any keys to be pressed for 4/5th of a second.
