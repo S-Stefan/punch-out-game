@@ -1,0 +1,42 @@
+body {
+  background: url(http://res.cloudinary.com/simpleview/image/upload/v1497480003/clients/lasvegas/strip_b86ddbea-3add-4995-b449-ac85d700b027.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.game-window {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+  border-style: solid;
+  border-width: thick;
+  border-radius: 5px;
+
+  background-color: white;
+
+  position: absolute;
+  left: 23%;
+}
+
+#cpu {
+  width: 100px;
+  height: 150px;
+  background-color: black;
+
+  position: absolute;
+  left: 50%;
+  top: 35%;
+}
+
+#player {
+  width: 75px;
+  height: 125px;
+  background-color: green;
+  
+  position: absolute;
+  left: 47%;
+  top: 50%;
+}
