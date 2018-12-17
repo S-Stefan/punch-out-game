@@ -28,13 +28,13 @@ $(function() {
       });
       $cpuDiv.animate({
         'top' : "47%"
-      });
+      }, "fast");
       $cpuDiv.animate({
         'top' : "35%"
       });
       $cpuDiv.animate({
         'left' : "50%"
-      });
+      }, "fast");
     };
     this.punch2 = function() {
       $cpuDiv.animate({
@@ -52,13 +52,11 @@ $(function() {
 
   var mikeTyson = new CPU("mikeSpritesheet", 20, 200);
   cpuBehaviour();
-  // setInterval(mikeTyson.punch2, Math.floor((Math.random() * 6) + 1)*1000);
+  setInterval(checkHit, 1);
 
-  // console.log(punchOutput);
-  // console.log(mikeTyson.punchOutput);
-  // setInterval(mikeTyson.punch1, mikeTyson.punchOutput*1000);
 
   function cpuBehaviour() {
+    console.log("animation started!");
     var rand = Math.floor((Math.random() * 6) + 1);
     console.log(rand);
     if (rand >= 3) {
@@ -67,7 +65,17 @@ $(function() {
       mikeTyson.punch2();
     }
     setTimeout(cpuBehaviour, rand * 1000);
-}
+  }
+
+  function checkHit() {
+    var miss = true;
+    if ($playerDiv.css("left") > "350px") {
+      miss = false;
+    }
+    if ($cpuDiv.css("top") == "282px" && !miss) {
+      console.log("hit!");
+    }
+  }
 
   // Event handler for player.
   function setUpKeyHandler() {
@@ -210,6 +218,6 @@ $(function() {
         x, y,
         spritesheet.frameWidth, spritesheet.frameHeight);
     };
-}
+  }
 
 });
