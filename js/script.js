@@ -1,26 +1,25 @@
 $(function() {
 
+  // Globals.
   var $playerDiv = $("#player");
-  var $cpuDiv = $("#cpu");
-  var cpuDefeated = false;
   var $playerHealth = $(".p-health");
   var playerHealth = 240;
+  var $playerImg = $(".player-img");
+
+
+  var $cpuDiv = $("#cpu");
   var $cpuHealth = $(".c-health");
   var cpuHealth = 240;
+  var $cpuImg = $(".cpu-img");
+
+  var cpuDefeated = false;
+  var arrayIterator = null;
 
 
-  // CPU object.
-  var cpu = {
-    "image": null,
-    "punchPower": null,
-    "hitPoints": null,
-    "taunt": null,
-    "punchOutput": null
 
-  }
-
-  var CPU = function(image, punchPower, hitPoints) {
-    this.image = image;
+  // CPU constructor.
+  var CPU = function(sprite, punchPower, hitPoints) {
+    this.sprite = sprite;
     this.punchPower = punchPower;
     this.hitPoints = hitPoints;
     this.taunt = function() {
@@ -48,6 +47,30 @@ $(function() {
         'top' : "35%"
       }, "fast");
     };
+  }
+
+  // Animations.
+  var macAnimations = {
+    "macDefault": ["images/little-mac-1.png", "images/little-mac-2.png", "images/little-mac-1.png", "images/little-mac-2.png"],
+
+    "macJab": ["images/little-mac-2.png", "images/mac-jab-part1.png", "images/mac-jab-finish.png"],
+
+    "macCross": ["images/little-mac-2.png", "images/mac-cross-part1.png", "images/mac-cross-part2.png", "images/mac-cross-part3.png", "images/mac-cross-finish.png"]
+
+  };
+
+  var animation = macAnimations.macDefault;
+  // setInterval(animateSprite(animation, $playerImg), 1000);
+
+  // Function to animate sprite. Takes parameters for array of sprites and the element that contains the sprites on the screen.
+  function animateSprite(animation, element) {
+    var animationArray = animation;
+    setTimeout(function() {
+      for (var i = 0; i < animationArray.length; i++) {
+        console.log("Animations iteration " + i + " " + element.attr("src"));
+        element.attr("src", animationArray[i]);
+      }
+    }, 1000);
   }
 
   // Set up game environment.
@@ -199,56 +222,6 @@ $(function() {
 
     // Don't allow any keys to be pressed for 4/5th of a second.
     setTimeout(setUpKeyHandler, 800);
-  }
-
-  function spriteSheet(path, frameWidth, framHeight) {
-    this.image = new Image();
-    this.frameWidth = frameWidth;
-    this.framHeight = frameHeight;
-
-    // calculate the number of frames in a row once the image loads.
-    var self = this;
-    this.image.onload = function() {
-      self.framesPerRow = Math.floor(image.width / frameWidth);
-    };
-
-    this.image.src = path;
-  }
-
-
-  function spriteAnimation(spritesheet, frameSpeed, startFrame, endFrame) {
-    var animationSequence = [];  // array holding the order of the animation
-    var currentFrame = 0;        // the current frame to draw
-    var counter = 0;             // keep track of frame rate
-
-    // create the sequence of frame numbers for the animation
-    for (var frameNumber = startFrame; frameNumber <= endFrame; frameNumber++)
-      animationSequence.push(frameNumber);
-
-    // Update the animation
-    this.update = function() {
-
-      // update to the next frame if it is time
-      if (counter == (frameSpeed - 1))
-        currentFrame = (currentFrame + 1) % animationSequence.length;
-
-      // update the counter
-      counter = (counter + 1) % frameSpeed;
-    };
-
-    // draw the current frame
-    this.draw = function(x, y) {
-      // get the row and col of the frame
-      var row = Math.floor(animationSequence[currentFrame] / spritesheet.framesPerRow);
-      var col = Math.floor(animationSequence[currentFrame] % spritesheet.framesPerRow);
-
-      ctx.drawImage(
-        spritesheet.image,
-        col * spritesheet.frameWidth, row * spritesheet.frameHeight,
-        spritesheet.frameWidth, spritesheet.frameHeight,
-        x, y,
-        spritesheet.frameWidth, spritesheet.frameHeight);
-    };
   }
 
 });
