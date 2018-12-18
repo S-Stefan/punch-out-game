@@ -54,9 +54,9 @@ $(function() {
   setUpKeyHandler();
   // var punchOutput = Math.floor((Math.random() * 6) + 1);
 
-  var mikeTyson = new CPU("mikeSpritesheet", 20, 200);
+  var mikeTyson = new CPU("mikeSpritesheet", 25, 240);
   cpuBehaviour();
-  var checkHit = setInterval(checkHit, 1);
+  var checkHit = setInterval(checkHit, 10);
 
 
   function cpuBehaviour() {
@@ -75,7 +75,16 @@ $(function() {
     var hit = false;
     if ($cpuDiv.css("top") == "282px" && ($playerDiv.css("left") > "350px" && $playerDiv.css("left") < "400px")) {
       hit = true;
-      playerHealth -= 20;
+      playerHealth -= mikeTyson.punchPower;
+
+      if (playerHealth < 120) {
+        $playerHealth.css("background-color", "orange");
+      }
+
+      if (playerHealth < 50) {
+        $playerHealth.css("background-color", "red");
+      }
+
       if (playerHealth <= 0) {
         clearInterval(checkHit);
         alert("KO, YOU LOSE!");
@@ -87,15 +96,6 @@ $(function() {
     if (hit) {
       console.log("HIT!");
     }
-
-    // console.log($playerDiv.css("left"))
-    // var miss = true;
-    // if ($playerDiv.css("left") > "350px") {
-    //   miss = false;
-    // }
-    // if ($cpuDiv.css("top") == "282px" && !miss) {
-    //   console.log("hit!");
-    // }
   }
 
   // Event handler for player.
@@ -174,6 +174,11 @@ $(function() {
     $playerDiv.animate({
       'top' : "50%"
     }, "fast");
+
+    // Take away cpu health.
+    cpuHealth -= 5;
+    $cpuHealth.css("width", cpuHealth);
+
     // Don't allow any keys to be pressed for half a second.
     setTimeout(setUpKeyHandler, 500);
   }
@@ -187,6 +192,11 @@ $(function() {
     $playerDiv.animate({
       'top' : "50%"
     });
+
+    // Take away cpu health.
+    cpuHealth -= 15;
+    $cpuHealth.css("width", cpuHealth);
+
     // Don't allow any keys to be pressed for 4/5th of a second.
     setTimeout(setUpKeyHandler, 800);
   }
