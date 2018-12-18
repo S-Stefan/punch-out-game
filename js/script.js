@@ -68,13 +68,23 @@ $(function() {
   }
 
   function checkHit() {
-    var miss = true;
-    if ($playerDiv.css("left") > "350px") {
-      miss = false;
+    var hit = false;
+    if ($cpuDiv.css("top") == "282px" && ($playerDiv.css("left") > "350px" && $playerDiv.css("left") < "400px")) {
+      hit = true;
     }
-    if ($cpuDiv.css("top") == "282px" && !miss) {
-      console.log("hit!");
+
+    if (hit) {
+      console.log("HIT!");
     }
+
+    // console.log($playerDiv.css("left"))
+    // var miss = true;
+    // if ($playerDiv.css("left") > "350px") {
+    //   miss = false;
+    // }
+    // if ($cpuDiv.css("top") == "282px" && !miss) {
+    //   console.log("hit!");
+    // }
   }
 
   // Event handler for player.
