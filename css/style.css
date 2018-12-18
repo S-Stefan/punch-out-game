@@ -40,6 +40,12 @@ body {
   background-color: green;
 }
 
+.c-health {
+  width: 100%;
+  height: 100%;
+  background-color: green;
+}
+
 #player-hp {
   border-style: solid;
   margin-left: 4%;

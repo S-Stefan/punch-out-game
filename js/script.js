@@ -3,6 +3,10 @@ $(function() {
   var $playerDiv = $("#player");
   var $cpuDiv = $("#cpu");
   var cpuDefeated = false;
+  var $playerHealth = $(".p-health");
+  var playerHealth = 240;
+  var $cpuHealth = $(".c-health");
+  var cpuHealth = 240;
 
 
   // CPU object.
@@ -52,7 +56,7 @@ $(function() {
 
   var mikeTyson = new CPU("mikeSpritesheet", 20, 200);
   cpuBehaviour();
-  setInterval(checkHit, 1);
+  var checkHit = setInterval(checkHit, 1);
 
 
   function cpuBehaviour() {
@@ -71,6 +75,13 @@ $(function() {
     var hit = false;
     if ($cpuDiv.css("top") == "282px" && ($playerDiv.css("left") > "350px" && $playerDiv.css("left") < "400px")) {
       hit = true;
+      playerHealth -= 20;
+      if (playerHealth <= 0) {
+        clearInterval(checkHit);
+        alert("KO, YOU LOSE!");
+      }
+      console.log(playerHealth);
+      $playerHealth.css("width", playerHealth);
     }
 
     if (hit) {
