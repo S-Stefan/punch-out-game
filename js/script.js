@@ -13,7 +13,6 @@ $(function() {
   var $cpuImg = $(".cpu-img");
 
   var cpuDefeated = false;
-  var arrayIterator = null;
 
 
 
@@ -59,19 +58,55 @@ $(function() {
 
   };
 
-  var animation = macAnimations.macDefault;
-  // setInterval(animateSprite(animation, $playerImg), 1000);
+  var mikeAnimations = {
+    "mikeDefault": [[true],["images/mike-3.png", "images/mike-1.png", "images/mike-2.png", "images/mike-3.png"]]
+  };
 
-  // Function to animate sprite. Takes parameters for array of sprites and the element that contains the sprites on the screen.
-  function animateSprite(animation, element) {
-    var animationArray = animation;
-    setTimeout(function() {
-      for (var i = 0; i < animationArray.length; i++) {
-        console.log("Animations iteration " + i + " " + element.attr("src"));
-        element.attr("src", animationArray[i]);
-      }
-    }, 1000);
-  }
+  // var animationArray = mikeAnimations.mikeDefault;
+  // var bool = true;
+
+  // runAnimation(mikeAnimations.mikeDefault, $cpuImg, bool);
+  //
+  // function runAnimation(array, character, repeating) {
+  //   var counter = 0;
+  //   setInterval(function() {
+  //     counter++;
+  //   }, 500);
+  //
+  //   while (counter < array.length) {
+  //     character.attr("src", array[counter]);
+  //   }
+  //
+  //   if (!repeating) {
+  //     console.log("Animation done")
+  //     return;
+  //   } else {
+  //     runAnimation(array, character, repeating);
+  //   }
+  // }
+
+  // var animation = mikeAnimations.mikeDefault;
+  // var current = 0;
+  // // setInterval(animateSprite(animation, $playerImg), 1000);
+  // var animateDefaultMike = setInterval(animateSprite, 500);
+  //
+  // // Function to animate sprite. Takes parameters for array of sprites and the element that contains the sprites on the screen.
+  // function animateSprite() {
+  //   current++;
+  //   if (current >= animation.length) {
+  //     console.log("end of animation");
+  //     current = 0;
+  //   }
+  //   $cpuImg.attr("src", animation[current]);
+  // }
+  // function animateSprite(animation, element, max) {
+  //   current++;
+  //   if (current >= max) {
+  //     console.log("end of animation");
+  //     current = 0;
+  //   }
+  //   element.attr("src", animation[current]);
+  // }
 
   // Set up game environment.
   setUpKeyHandler();
@@ -200,7 +235,11 @@ $(function() {
 
     // Take away cpu health.
     cpuHealth -= 5;
+
     $cpuHealth.css("width", cpuHealth);
+    if (cpuHealth <= 0) {
+      alert("YOU WIN!!!");
+    }
 
     // Don't allow any keys to be pressed for half a second.
     setTimeout(setUpKeyHandler, 500);
@@ -219,6 +258,9 @@ $(function() {
     // Take away cpu health.
     cpuHealth -= 15;
     $cpuHealth.css("width", cpuHealth);
+    if (cpuHealth <= 0) {
+      alert("YOU WIN!!!");
+    }
 
     // Don't allow any keys to be pressed for 4/5th of a second.
     setTimeout(setUpKeyHandler, 800);
