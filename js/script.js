@@ -27,7 +27,7 @@ $(function() {
     this.punch1 = function() {
       $cpuDiv.animate({
         'left' : "48%"
-      });
+      }, "fast");
       $cpuDiv.animate({
         'top' : "47%"
       }, "fast");
@@ -113,7 +113,9 @@ $(function() {
   // var punchOutput = Math.floor((Math.random() * 6) + 1);
 
   var mikeTyson = new CPU("mikeSpritesheet", 25, 240);
-  cpuBehaviour();
+  // Let the cpu start behaviour after 3 seconds.
+  setTimeout(cpuBehaviour, 3000);
+  // Constantly check if the CPU has hit the player.
   var checkHit = setInterval(checkHit, 10);
 
 
@@ -131,7 +133,7 @@ $(function() {
 
   function checkHit() {
     var hit = false;
-    if ($cpuDiv.css("top") == "282px" && ($playerDiv.css("left") > "350px" && $playerDiv.css("left") < "400px")) {
+    if ($cpuDiv.css("top") == "282px" && ($playerDiv.css("left") > "370px" && $playerDiv.css("left") < "420px")) {
       hit = true;
       playerHealth -= mikeTyson.punchPower;
 
@@ -200,10 +202,10 @@ $(function() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
     $playerDiv.animate({
-      'left' : "42%"
+      'left' : "45%"
     });
     $playerDiv.animate({
-      'left' : "47%"
+      'left' : "50%"
     });
     // Don't allow any keys to be pressed for a fraction of a second.
     setTimeout(setUpKeyHandler, 800);
@@ -214,10 +216,10 @@ $(function() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
     $playerDiv.animate({
-      'left' : "52%"
+      'left' : "55%"
     });
     $playerDiv.animate({
-      'left' : "47%"
+      'left' : "50%"
     });
     // Don't allow any keys to be pressed for a fraction of a second.
     setTimeout(setUpKeyHandler, 800);
