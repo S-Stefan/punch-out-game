@@ -12,29 +12,6 @@ body {
   font-family: GameFont;
 }
 
-.instructions {
-  position: relative;
-  margin-top: 100px;
-  margin-left: 30px;
-  width: 200px;
-  height: 300px;
-  border-style: solid;
-  border-width: thick;
-  border-radius: 5px;
-  background-color: silver;
-
-}
-
-.instructions h1 {
-  text-align: center;
-}
-
-.instructions h3 {
-  margin-top: 50px;
-  text-align: center;
-  font-weight: bold;
-}
-
 .hide {
   visibility: hidden;
 }
@@ -48,7 +25,6 @@ body {
   border-width: thick;
   border-radius: 5px;
 
-  /* background-color: white; */
   background-image: url(../images/punch-out-main-background.png);
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -59,17 +35,28 @@ body {
 
 .game-bar {
   position: relative;
-  height: 60px;
-  padding-top: 60px;
-
+  height: 120px;
   background-color: black;
 }
 
-.hp-bar {
-  width: 30%;
-  height: 50%;
-  position: relative;
+.top {
+  width: 49%;
+  height: 100%;
   display: inline-block;
+}
+
+h3 {
+  color: silver;
+  text-align: center;
+}
+
+.hp-bar {
+  border-style: solid;
+  border-color: silver;
+  margin: 5% 10% 10% 10%;
+  width: 75%;
+  height: 30%;
+  position: relative;
 }
 
 .p-health {
@@ -84,23 +71,27 @@ body {
   background-color: green;
 }
 
-.win-text {
-  position: relative;
+.play-again-button {
+  position: absolute;
+  left: 30%;
+  top: 50%;
+  width: 80px;
+  height: 100px;
+}
+
+a img {
+  width: 100%;
+  height: 100%;
+}
+
+a img:hover {
+  transform: scale(1.4) rotate(5deg);
+}
+
+h4 {
+  color: white;
   text-align: center;
-
-  color: gold;
-  font-family: GameFont;
-}
-
-#player-hp {
-  border-style: solid;
-  border-color: silver;
-  margin-left: 4%;
-}
-
-#cpu-hp {
-  border-style: solid;
-  border-color: silver;
+  margin-top: 3px;
 }
 
 #cpu {

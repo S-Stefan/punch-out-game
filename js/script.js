@@ -3,13 +3,13 @@ $(function() {
   // Globals.
   var $playerDiv = $("#player");
   var $playerHealth = $(".p-health");
-  var playerHealth = 240;
+  var playerHealth = 295;
   var $playerImg = $(".player-img");
 
 
   var $cpuDiv = $("#cpu");
   var $cpuHealth = $(".c-health");
-  var cpuHealth = 240;
+  var cpuHealth = 295;
   var $cpuImg = $(".cpu-img");
 
   var cpuDefeated = false;
@@ -63,9 +63,9 @@ $(function() {
   // Set up game environment.
   setUpKeyHandler();
   // var punchOutput = Math.floor((Math.random() * 6) + 1);
-
+  console.log($playerHealth.css("width"));
   // Second one is punch power.
-  var mikeTyson = new CPU("mikeSpritesheet", 25, 240);
+  var mikeTyson = new CPU("mikeSpritesheet", 25, 295);
   // Let the cpu start behaviour after 3 seconds.
   setTimeout(cpuBehaviour, 3000);
   var runCpu = setInterval(cpuBehaviour, randGenerator(6)*1000);
@@ -119,14 +119,18 @@ $(function() {
     if (cpuHealth <= 0) {
       $cpuImg.attr('src', "images/mike-ko2.png");
       $("#cpu-hp").addClass("hide");
-      $(".win-text").html("YOU WIN");
-      $(".win-text").removeClass("hide");
+      $(".cpu-name").addClass("hide");
+      $(".player-name").html("YOU WIN");
+      $(".player-name").css('color', "Gold");
+      $(".play-again-button").removeClass("hide");
       $(document.documentElement).off("keydown");
     } else {
       $playerImg.attr('src', "images/mac-defeated.png");
       $("#player-hp").addClass("hide");
-      $(".win-text").html("TYSON WINS");
-      $(".win-text").removeClass("hide");
+      $(".player-name").addClass("hide");
+      $(".cpu-name").html("TYSON WINS");
+      $(".cpu-name").css('color', "Gold");
+      $(".play-again-button").removeClass("hide");
       $(document.documentElement).off("keydown");
     }
   }

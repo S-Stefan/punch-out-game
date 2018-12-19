@@ -28,16 +28,16 @@ body {
 
 h1 {
   text-align: center;
-  margin-bottom: 8%;
+  margin-bottom: 5%;
 }
 
 ul {
   list-style: none;
-  text-align: center;
+  /* text-align: center; */
 }
 
 li {
-  margin-bottom: 4%;
+  margin-top: 10%;
 }
 
 .story-div {
@@ -47,4 +47,28 @@ li {
   padding: 1%;
 
   border-style: solid;
+}
+
+.left {
+  width: 38%;
+  height: 40%;
+  margin-left: 10%;
+
+  display: inline-block;
+}
+
+.right {
+    width: 38%;
+    height: 40%;
+    margin-right: 10%;
+
+    display: inline-block;
+
+    text-align: center;
+    color: white;
+}
+
+img:hover {
+  transform: scale(1.4) rotate(5deg);
+  src: url(images/mike-6.png);
 }

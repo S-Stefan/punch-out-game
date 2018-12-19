@@ -10,11 +10,23 @@
   <body>
 
     <div class="game-window">
+
       <div class="game-bar">
-        <div class="hp-bar" id="player-hp"><div class="p-health"></div></div>
-        <div class="hp-bar"><h2 class="win-text hide"></h2></div>
-        <div class="hp-bar" id="cpu-hp"><div class="c-health"></div></div>
+        <div class="top">
+          <h3 class="player-name">Little-Mac</h3>
+          <div class="hp-bar" id="player-hp"><div class="p-health"></div></div>
+        </div>
+        <div class="top">
+          <h3 class="cpu-name">Iron-Mike</h3>
+          <div class="hp-bar" id="cpu-hp"><div class="c-health"></div></div>
+        </div>
       </div>
+
+      <div class="play-again-button hide">
+        <a href="game.html"><img src="images/mario-sprite2.png" alt="play-again"></a>
+        <h4>Click Mario to play again</h4>
+      </div>
+
       <div class="fighter" id="cpu">
         <img class="cpu-img" src="images/mike-3.png" alt="Iron-Mike">
       </div>
