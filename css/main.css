@@ -1,0 +1,50 @@
+@font-face {
+  font-family: GameFont;
+  src: url(../fonts/8bit_wonder/8-BIT-WONDER.TTF);
+}
+
+body {
+  background: url(http://res.cloudinary.com/simpleview/image/upload/v1497480003/clients/lasvegas/strip_b86ddbea-3add-4995-b449-ac85d700b027.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: GameFont;
+}
+
+.home-page-window {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+  border-style: solid;
+  border-width: thick;
+  border-radius: 5px;
+  background-color: grey;
+
+  position: absolute;
+  left: 23%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 8%;
+}
+
+ul {
+  list-style: none;
+  text-align: center;
+}
+
+li {
+  margin-bottom: 4%;
+}
+
+.story-div {
+  position: relative;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 1%;
+
+  border-style: solid;
+}

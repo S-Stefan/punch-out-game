@@ -64,6 +64,7 @@ $(function() {
   setUpKeyHandler();
   // var punchOutput = Math.floor((Math.random() * 6) + 1);
 
+  // Second one is punch power.
   var mikeTyson = new CPU("mikeSpritesheet", 25, 240);
   // Let the cpu start behaviour after 3 seconds.
   setTimeout(cpuBehaviour, 3000);
@@ -104,8 +105,7 @@ $(function() {
       }
 
       if (playerHealth <= 0) {
-        clearInterval(checkHit);
-        alert("KO, YOU LOSE!");
+        youWin();
       }
       console.log(playerHealth);
       $playerHealth.css("width", playerHealth);
@@ -118,7 +118,16 @@ $(function() {
     clearInterval(runCpu);
     if (cpuHealth <= 0) {
       $cpuImg.attr('src', "images/mike-ko2.png");
-      $("#cpu-hp").remove();
+      $("#cpu-hp").addClass("hide");
+      $(".win-text").html("YOU WIN");
+      $(".win-text").removeClass("hide");
+      $(document.documentElement).off("keydown");
+    } else {
+      $playerImg.attr('src', "images/mac-defeated.png");
+      $("#player-hp").addClass("hide");
+      $(".win-text").html("TYSON WINS");
+      $(".win-text").removeClass("hide");
+      $(document.documentElement).off("keydown");
     }
   }
 
@@ -200,7 +209,7 @@ $(function() {
     }, "fast");
 
     // Take away cpu health.
-    cpuHealth -= 50;
+    cpuHealth -= 5;
 
     $cpuHealth.css("width", cpuHealth);
     if (cpuHealth <= 0) {
