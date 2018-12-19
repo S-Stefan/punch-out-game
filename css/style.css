@@ -9,7 +9,7 @@ body {
 .instructions {
   position: relative;
   margin-top: 100px;
-  margin-left: 50px;
+  margin-left: 30px;
   width: 200px;
   height: 300px;
   border-style: solid;
@@ -24,7 +24,8 @@ body {
   text-align: center;
 }
 
-.instructions p {
+.instructions h3 {
+  margin-top: 50px;
   text-align: center;
   font-weight: bold;
 }

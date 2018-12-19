@@ -14,8 +14,6 @@ $(function() {
 
   var cpuDefeated = false;
 
-
-
   // CPU constructor.
   var CPU = function(sprite, punchPower, hitPoints) {
     this.sprite = sprite;
@@ -62,62 +60,6 @@ $(function() {
     "mikeDefault": [[true],["images/mike-3.png", "images/mike-1.png", "images/mike-2.png", "images/mike-3.png"]]
   };
 
-  // var animationArray = mikeAnimations.mikeDefault;
-  // var bool = true;
-
-  // runAnimation(mikeAnimations.mikeDefault, $cpuImg, bool);
-  //
-  // function runAnimation(array, character, repeating) {
-  //   var counter = 0;
-  //   setInterval(function() {
-  //     counter++;
-  //   }, 500);
-  //
-  //   while (counter < array.length) {
-  //     character.attr("src", array[counter]);
-  //   }
-  //
-  //   if (!repeating) {
-  //     console.log("Animation done")
-  //     return;
-  //   } else {
-  //     runAnimation(array, character, repeating);
-  //   }
-  // }
-
-  // var animation = mikeAnimations.mikeDefault;
-  // var current = 0;
-  // // setInterval(animateSprite(animation, $playerImg), 1000);
-  // var animateDefaultMike = setInterval(animateSprite, 500);
-  //
-  // // Function to animate sprite. Takes parameters for array of sprites and the element that contains the sprites on the screen.
-  // function animateSprite() {
-  //   current++;
-  //   if (current >= animation.length) {
-  //     console.log("end of animation");
-  //     current = 0;
-  //   }
-  //   $cpuImg.attr("src", animation[current]);
-  // }
-  // function animateSprite(animation, element, max) {
-  //   current++;
-  //   if (current >= max) {
-  //     console.log("end of animation");
-  //     current = 0;
-  //   }
-  //   element.attr("src", animation[current]);
-  // }
-
-  var $instructionsButton = $(".instructions-button");
-  $instructionsButton.click(function() {
-    $instructionsButton.animate({
-      'height' : "600px"
-    });
-    // setTimeout(function() {
-    //   $instructionsButton.attr("hidden");
-    // }, 1000);
-  });
-
   // Set up game environment.
   setUpKeyHandler();
   // var punchOutput = Math.floor((Math.random() * 6) + 1);
@@ -125,26 +67,32 @@ $(function() {
   var mikeTyson = new CPU("mikeSpritesheet", 25, 240);
   // Let the cpu start behaviour after 3 seconds.
   setTimeout(cpuBehaviour, 3000);
+  var runCpu = setInterval(cpuBehaviour, randGenerator(6)*1000);
   // Constantly check if the CPU has hit the player.
   var checkHit = setInterval(checkHit, 10);
 
+  function randGenerator(timeFrame) {
+    var rand = Math.floor((Math.random() * timeFrame) + 1);
+    return rand;
+  }
 
   function cpuBehaviour() {
-    console.log("animation started!");
-    var rand = Math.floor((Math.random() * 6) + 1);
+    // Rand controls the logic gates for setting the punch that is called.
+    var rand = randGenerator(2);
     console.log(rand);
-    if (rand >= 3) {
+    if (rand == 1) {
       mikeTyson.punch1();
     } else {
       mikeTyson.punch2();
     }
-    setTimeout(cpuBehaviour, rand * 1000);
+    // setTimeout(cpuBehaviour, rand * 1000);
   }
 
   function checkHit() {
-    var hit = false;
+    // var hit = false;
+    // If player is within HIT radius.
     if ($cpuDiv.css("top") == "282px" && ($playerDiv.css("left") > "370px" && $playerDiv.css("left") < "420px")) {
-      hit = true;
+      // hit = true;
       playerHealth -= mikeTyson.punchPower;
 
       if (playerHealth < 120) {
@@ -161,10 +109,16 @@ $(function() {
       }
       console.log(playerHealth);
       $playerHealth.css("width", playerHealth);
-    }
-
-    if (hit) {
       console.log("HIT!");
+    }
+  }
+
+  function youWin() {
+    clearInterval(checkHit);
+    clearInterval(runCpu);
+    if (cpuHealth <= 0) {
+      $cpuImg.attr('src', "images/mike-ko2.png");
+      $("#cpu-hp").remove();
     }
   }
 
@@ -246,11 +200,11 @@ $(function() {
     }, "fast");
 
     // Take away cpu health.
-    cpuHealth -= 5;
+    cpuHealth -= 50;
 
     $cpuHealth.css("width", cpuHealth);
     if (cpuHealth <= 0) {
-      alert("YOU WIN!!!");
+      youWin();
     }
 
     // Don't allow any keys to be pressed for half a second.
@@ -271,7 +225,7 @@ $(function() {
     cpuHealth -= 15;
     $cpuHealth.css("width", cpuHealth);
     if (cpuHealth <= 0) {
-      alert("YOU WIN!!!");
+      youWin();
     }
 
     // Don't allow any keys to be pressed for 4/5th of a second.
