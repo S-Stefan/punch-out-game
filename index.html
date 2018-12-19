@@ -3,20 +3,29 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script> -->
     <title>Punch-Out!</title>
   </head>
   <body>
 
     <div class="game-window">
-      <div class="game-bar">
-        <div class="hp-bar" id="player-hp"><div class="p-health"></div></div>
-        <div class="hp-bar"></div>
-        <div class="hp-bar" id="cpu-hp"><div class="c-health"></div></div>
+      <div class="instructions">
+        <h1>Instructions</h1>
+        <ul>
+          <li>a: Jab</li>
+          <p></p>
+          <li>s: Power-punch</li>
+          <p></p>
+          <li>left: Dodge left</li>
+          <p></p>
+          <li>right: Dodge right</li>
+        </ul>
+        <p>Click Mike to play!</p>
       </div>
+
       <div class="fighter" id="cpu">
-        <img class="cpu-img" src="images/mike-3.png" alt="Iron-Mike">
+        <a href="game.html"><img class="cpu-img" src="images/mike-3.png" alt="Iron-Mike"></a>
       </div>
       <div class="fighter" id="player">
         <img class="player-img" src="images/mac-cross-part1.png" alt="little-mac">

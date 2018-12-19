@@ -27,7 +27,7 @@ $(function() {
     this.punch1 = function() {
       $cpuDiv.animate({
         'left' : "48%"
-      }, "fast");
+      });
       $cpuDiv.animate({
         'top' : "47%"
       }, "fast");
@@ -107,6 +107,16 @@ $(function() {
   //   }
   //   element.attr("src", animation[current]);
   // }
+
+  var $instructionsButton = $(".instructions-button");
+  $instructionsButton.click(function() {
+    $instructionsButton.animate({
+      'height' : "600px"
+    });
+    // setTimeout(function() {
+    //   $instructionsButton.attr("hidden");
+    // }, 1000);
+  });
 
   // Set up game environment.
   setUpKeyHandler();
