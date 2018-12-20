@@ -50,14 +50,14 @@ $(function() {
   var macAnimations = {
     "macDefault": ["images/little-mac-1.png", "images/little-mac-2.png", "images/little-mac-1.png", "images/little-mac-2.png"],
 
-    "macJab": ["images/little-mac-2.png", "images/mac-jab-part1.png", "images/mac-jab-finish.png"],
+    "macJab": ["images/little-mac-1.png", "images/mac-jab-part1.png", "images/mac-jab-finish.png", "images/mac-jab-part1.png", "images/little-mac-1.png"],
 
     "macCross": ["images/little-mac-2.png", "images/mac-cross-part1.png", "images/mac-cross-part2.png", "images/mac-cross-part3.png", "images/mac-cross-finish.png"]
 
   };
 
   var mikeAnimations = {
-    "mikeDefault": [[true],["images/mike-3.png", "images/mike-1.png", "images/mike-2.png", "images/mike-3.png"]]
+    "mikeDefault": ["images/mike-3.png", "images/mike-1.png", "images/mike-2.png", "images/mike-3.png"]
   };
 
   // Set up game environment.
@@ -111,6 +111,31 @@ $(function() {
       $playerHealth.css("width", playerHealth);
       console.log("HIT!");
     }
+  }
+
+  var jab = macAnimations.macJab;
+  console.log(jab);
+
+  // In order to setTimout or setInterval a function with parameters/arguments, you need to timeout an anonymous function which will then call your function with parameters when called.
+  setTimeout(function() {
+    animate($playerImg, jab);
+  }, 3000);
+
+  // Takes parameters for the img element of the character you wish to animate as well as the animation you would like to run.
+  function animate(character, animationArray) {
+    for (i=0; i<animationArray.length; i++) {
+      setTimeout(function() {
+        console.log("run");
+        console.log(i);
+        displaySprite(character, animationArray, i);
+      }, 200);
+    }
+  }
+
+  // Takes parameters for the character you wish to animate, the animation array, and the current index in the array you wish to display.
+  function displaySprite(character ,animationArray, arrayIndex) {
+    // Change the elements image path to one from the given array at the given index.
+    character.attr("src", animationArray[arrayIndex]);
   }
 
   function youWin() {
