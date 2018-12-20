@@ -157,19 +157,18 @@ $(function() {
     character.attr("src", animationArray[arrayIndex]);
   }
 
-  function playSound(element) {
+  function playSound(element, soundLength) {
     // console.log(element[0]);
-    console.log("play sound");
+    // console.log("play sound");
     element[0].currentTime = 0;
     setTimeout(function() {
       element[0].play()
     }, 100);
     setTimeout(function() {
-      console.log("pussyo");
       element[0].pause();
       element[0].currentTime = 0;
       console.log(element[0].currentTime);
-    }, 200);
+    }, soundLength);
   }
 
   // This function is called when the player or cpu wins.
@@ -277,7 +276,7 @@ $(function() {
 
     // call jab animation.
     animate($playerImg, macAnimations.macJab);
-    playSound($("#jab"));
+    playSound($("#jab"), 200);
 
     $playerDiv.animate({
       'top' : "42%"
@@ -305,6 +304,8 @@ $(function() {
 
     // call cross animation.
     animate($playerImg, macAnimations.macCross);
+    playSound($("#cross"), 400);
+
 
     $playerDiv.animate({
       'top' : "42%"
