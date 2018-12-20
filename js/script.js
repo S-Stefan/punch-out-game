@@ -78,15 +78,18 @@ $(function() {
 
   // Set up game environment.
   setUpKeyHandler();
-  // var punchOutput = Math.floor((Math.random() * 6) + 1);
-  console.log($playerHealth.css("width"));
-  // Second one is punch power.
+
+  // Create cpu object.
   var mikeTyson = new CPU("mikeSpritesheet", 25, 295);
   // Let the cpu start behaviour after 3 seconds.
   setTimeout(cpuBehaviour, 3000);
+
+  // Run cpuBehaviour at random intervals.
   var runCpu = setInterval(cpuBehaviour, randGenerator(6)*1000);
+
   // Constantly check if the CPU has hit the player.
   var checkHit = setInterval(checkHit, 10);
+  // Constantly check if cpu has been hit.
   var checkCpuHit = setInterval(checkCpuHit, 5);
 
   function randGenerator(timeFrame) {
@@ -111,6 +114,10 @@ $(function() {
     if ($playerDiv.css("top") == "252px") {
       // call mikeTyson animation.
       animate($cpuImg, mikeAnimations.getHit);
+    }
+    $cpuHealth.css("width", cpuHealth);
+    if (cpuHealth <= 0) {
+      youWin();
     }
   }
 
@@ -162,7 +169,7 @@ $(function() {
     // console.log("play sound");
     element[0].currentTime = 0;
     setTimeout(function() {
-      element[0].play()
+      element[0].play();
     }, 100);
     setTimeout(function() {
       element[0].pause();
@@ -289,10 +296,10 @@ $(function() {
     // Take away cpu health.
     cpuHealth -= 5;
 
-    $cpuHealth.css("width", cpuHealth);
-    if (cpuHealth <= 0) {
-      youWin();
-    }
+    // $cpuHealth.css("width", cpuHealth);
+    // if (cpuHealth <= 0) {
+    //   youWin();
+    // }
 
     // Don't allow any keys to be pressed for half a second.
     setTimeout(setUpKeyHandler, 500);
@@ -316,10 +323,10 @@ $(function() {
 
     // Take away cpu health.
     cpuHealth -= 15;
-    $cpuHealth.css("width", cpuHealth);
-    if (cpuHealth <= 0) {
-      youWin();
-    }
+    // $cpuHealth.css("width", cpuHealth);
+    // if (cpuHealth <= 0) {
+    //   youWin();
+    // }
 
     // Don't allow any keys to be pressed for a second.
     setTimeout(setUpKeyHandler, 1000);
