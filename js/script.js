@@ -71,7 +71,9 @@ $(function() {
 
     "mikePunch1": ["images/mike-1.png", "images/mike-2.png", "images/mike-4.png", "images/mike-5.png", "images/mike-6.png", "images/mike-6.png", "images/mike-punch1-finish.png", "images/mike-punch1-finish.png", "images/mike-5.png", "images/mike-3.png", "images/mike-2.png", "images/mike-1.png", "images/mike-3.png"],
 
-    "mikePunch2": ["images/mike-7.png", "images/mike-6.png", "images/mike-6.png", "images/mike-3.png", ]
+    "mikePunch2": ["images/mike-7.png", "images/mike-6.png", "images/mike-6.png", "images/mike-3.png", ],
+
+    "getHit": ["images/mike-ko1.png", "images/mike-ko1.png", "images/mike-3.png"]
   };
 
   // Set up game environment.
@@ -85,6 +87,7 @@ $(function() {
   var runCpu = setInterval(cpuBehaviour, randGenerator(6)*1000);
   // Constantly check if the CPU has hit the player.
   var checkHit = setInterval(checkHit, 10);
+  var checkCpuHit = setInterval(checkCpuHit, 5);
 
   function randGenerator(timeFrame) {
     var rand = Math.floor((Math.random() * timeFrame) + 1);
@@ -94,13 +97,21 @@ $(function() {
   function cpuBehaviour() {
     // Rand controls the logic gates for setting the punch that is called.
     var rand = randGenerator(2);
-    console.log(rand);
+    // console.log(rand);
     if (rand == 1) {
       mikeTyson.punch1();
     } else {
       mikeTyson.punch2();
     }
     // setTimeout(cpuBehaviour, rand * 1000);
+  }
+
+  function checkCpuHit() {
+    // console.log($playerDiv.css("top"));
+    if ($playerDiv.css("top") == "252px") {
+      // call mikeTyson animation.
+      animate($cpuImg, mikeAnimations.getHit);
+    }
   }
 
   function checkHit() {
@@ -134,8 +145,6 @@ $(function() {
       (function(i) {
         // In order to setTimout or setInterval a function with parameters/arguments, you need to timeout an anonymous function which will then call your function with parameters when called.
         setTimeout(function() {
-          console.log("run");
-          console.log(i);
           displaySprite(character, animationArray, i);
         }, 100 * (i + 1));
       })(i);
@@ -148,9 +157,28 @@ $(function() {
     character.attr("src", animationArray[arrayIndex]);
   }
 
+  function playSound(element) {
+    // console.log(element[0]);
+    console.log("play sound");
+    element[0].currentTime = 0;
+    setTimeout(function() {
+      element[0].play()
+    }, 100);
+    setTimeout(function() {
+      console.log("pussyo");
+      element[0].pause();
+      element[0].currentTime = 0;
+      console.log(element[0].currentTime);
+    }, 200);
+  }
+
+  // This function is called when the player or cpu wins.
   function youWin() {
+    $(document.documentElement).off("keydown");
     clearInterval(checkHit);
     clearInterval(runCpu);
+    clearInterval(checkCpuHit);
+
     if (cpuHealth <= 0) {
       $cpuImg.attr('src', "images/mike-ko2.png");
       $("#cpu-hp").addClass("hide");
@@ -158,7 +186,6 @@ $(function() {
       $(".player-name").html("YOU WIN");
       $(".player-name").css('color', "Gold");
       $(".play-again-button").removeClass("hide");
-      $(document.documentElement).off("keydown");
     } else {
       $playerImg.attr('src', "images/mac-defeated.png");
       $("#player-hp").addClass("hide");
@@ -166,7 +193,6 @@ $(function() {
       $(".cpu-name").html("TYSON WINS");
       $(".cpu-name").css('color', "Gold");
       $(".play-again-button").removeClass("hide");
-      $(document.documentElement).off("keydown");
     }
   }
 
@@ -251,6 +277,7 @@ $(function() {
 
     // call jab animation.
     animate($playerImg, macAnimations.macJab);
+    playSound($("#jab"));
 
     $playerDiv.animate({
       'top' : "42%"
@@ -293,8 +320,8 @@ $(function() {
       youWin();
     }
 
-    // Don't allow any keys to be pressed for 4/5th of a second.
-    setTimeout(setUpKeyHandler, 800);
+    // Don't allow any keys to be pressed for a second.
+    setTimeout(setUpKeyHandler, 1000);
   }
 
 });
