@@ -23,6 +23,9 @@ $(function() {
       console.log("TAUNT!");
     };
     this.punch1 = function() {
+      // call mikeTyson animation.
+      animate($cpuImg, mikeAnimations.mikePunch1);
+
       $cpuDiv.animate({
         'left' : "48%"
       });
@@ -37,6 +40,9 @@ $(function() {
       }, "fast");
     };
     this.punch2 = function() {
+      // call mikeTyson animation.
+      animate($cpuImg, mikeAnimations.mikePunch2);
+
       $cpuDiv.animate({
         'top' : "47%"
       }, "fast");
@@ -52,12 +58,20 @@ $(function() {
 
     "macJab": ["images/mac-jab-part1.png", "images/mac-jab-finish.png", "images/mac-jab-part1.png", "images/little-mac-1.png"],
 
-    "macCross": ["images/little-mac-2.png", "images/mac-cross-part1.png", "images/mac-cross-part2.png", "images/mac-cross-part3.png", "images/mac-cross-finish.png"]
+    "macCross": ["images/little-mac-2.png", "images/mac-cross-part1.png", "images/mac-cross-part2.png", "images/mac-cross-part3.png", "images/mac-cross-part2.png", "images/mac-cross-part1.png", "images/little-mac-1.png"],
+
+    "macLeftSlip": ["images/little-mac-2.png", "images/little-mac-1.png", "images/mac-left-slip.png", "images/mac-left-slip.png", "images/little-mac-2.png", "images/little-mac-1.png"],
+
+    "macSlipRight": ["images/little-mac-1.png", "images/little-mac-2.png", "images/mac-right-slip.png", "images/mac-right-slip.png", "images/little-mac-2.png", "images/little-mac-1.png"]
 
   };
 
   var mikeAnimations = {
-    "mikeDefault": ["images/mike-3.png", "images/mike-1.png", "images/mike-2.png", "images/mike-3.png"]
+    "mikeDefault": ["images/mike-3.png", "images/mike-1.png", "images/mike-2.png", "images/mike-3.png"],
+
+    "mikePunch1": ["images/mike-1.png", "images/mike-2.png", "images/mike-4.png", "images/mike-5.png", "images/mike-6.png", "images/mike-6.png", "images/mike-punch1-finish.png", "images/mike-punch1-finish.png", "images/mike-5.png", "images/mike-3.png", "images/mike-2.png", "images/mike-1.png", "images/mike-3.png"],
+
+    "mikePunch2": ["images/mike-7.png", "images/mike-6.png", "images/mike-6.png", "images/mike-3.png", ]
   };
 
   // Set up game environment.
@@ -112,10 +126,6 @@ $(function() {
       console.log("HIT!");
     }
   }
-
-  // var jab = macAnimations.macJab;
-  // console.log(jab);
-  // animate($playerImg, macAnimations.macJab);
 
   // Takes parameters for the img element of the character you wish to animate as well as the animation you would like to run.
   function animate(character, animationArray) {
@@ -203,6 +213,10 @@ $(function() {
   function slipLeft() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
+
+    // call slipLeft animation.
+    animate($playerImg, macAnimations.macLeftSlip);
+
     $playerDiv.animate({
       'left' : "45%"
     });
@@ -217,6 +231,10 @@ $(function() {
   function slipRight() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
+
+    // call slipRight animation.
+    animate($playerImg, macAnimations.macSlipRight);
+
     $playerDiv.animate({
       'left' : "55%"
     });
@@ -230,6 +248,7 @@ $(function() {
   function playerJab() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
+
     // call jab animation.
     animate($playerImg, macAnimations.macJab);
 
@@ -256,6 +275,10 @@ $(function() {
   function playerRightCross() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
+
+    // call cross animation.
+    animate($playerImg, macAnimations.macCross);
+
     $playerDiv.animate({
       'top' : "42%"
     });
