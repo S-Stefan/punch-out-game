@@ -50,7 +50,7 @@ $(function() {
   var macAnimations = {
     "macDefault": ["images/little-mac-1.png", "images/little-mac-2.png", "images/little-mac-1.png", "images/little-mac-2.png"],
 
-    "macJab": ["images/little-mac-1.png", "images/mac-jab-part1.png", "images/mac-jab-finish.png", "images/mac-jab-part1.png", "images/little-mac-1.png"],
+    "macJab": ["images/mac-jab-part1.png", "images/mac-jab-finish.png", "images/mac-jab-part1.png", "images/little-mac-1.png"],
 
     "macCross": ["images/little-mac-2.png", "images/mac-cross-part1.png", "images/mac-cross-part2.png", "images/mac-cross-part3.png", "images/mac-cross-finish.png"]
 
@@ -113,22 +113,22 @@ $(function() {
     }
   }
 
-  var jab = macAnimations.macJab;
-  console.log(jab);
-
-  // In order to setTimout or setInterval a function with parameters/arguments, you need to timeout an anonymous function which will then call your function with parameters when called.
-  setTimeout(function() {
-    animate($playerImg, jab);
-  }, 3000);
+  // var jab = macAnimations.macJab;
+  // console.log(jab);
+  // animate($playerImg, macAnimations.macJab);
 
   // Takes parameters for the img element of the character you wish to animate as well as the animation you would like to run.
   function animate(character, animationArray) {
     for (i=0; i<animationArray.length; i++) {
-      setTimeout(function() {
-        console.log("run");
-        console.log(i);
-        displaySprite(character, animationArray, i);
-      }, 200);
+      // We can use setTimout in a for loop by wrapping it in a IIFE.
+      (function(i) {
+        // In order to setTimout or setInterval a function with parameters/arguments, you need to timeout an anonymous function which will then call your function with parameters when called.
+        setTimeout(function() {
+          console.log("run");
+          console.log(i);
+          displaySprite(character, animationArray, i);
+        }, 100 * (i + 1));
+      })(i);
     }
   }
 
@@ -230,12 +230,16 @@ $(function() {
   function playerJab() {
     // Ensures no other keys can be pressed during the animation, and that keys can't be stacked.
     $(document.documentElement).off("keydown");
+    // call jab animation.
+    animate($playerImg, macAnimations.macJab);
+
     $playerDiv.animate({
       'top' : "42%"
     }, "fast");
     $playerDiv.animate({
       'top' : "50%"
     }, "fast");
+
 
     // Take away cpu health.
     cpuHealth -= 5;
