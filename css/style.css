@@ -1,9 +1,19 @@
+@font-face {
+  font-family: GameFont;
+  src: url(../fonts/8bit_wonder/8-BIT-WONDER.TTF);
+}
+
 body {
   background: url(http://res.cloudinary.com/simpleview/image/upload/v1497480003/clients/lasvegas/strip_b86ddbea-3add-4995-b449-ac85d700b027.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: GameFont;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 .game-window {
@@ -15,16 +25,79 @@ body {
   border-width: thick;
   border-radius: 5px;
 
-  background-color: white;
+  background-image: url(../images/punch-out-main-background.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
 
   position: absolute;
   left: 23%;
 }
 
+.game-bar {
+  position: relative;
+  height: 120px;
+  background-color: black;
+}
+
+.top {
+  width: 49%;
+  height: 100%;
+  display: inline-block;
+}
+
+h3 {
+  color: silver;
+  text-align: center;
+}
+
+.hp-bar {
+  border-style: solid;
+  border-color: silver;
+  margin: 5% 10% 10% 10%;
+  width: 75%;
+  height: 30%;
+  position: relative;
+}
+
+.p-health {
+  width: 100%;
+  height: 100%;
+  background-color: green;
+}
+
+.c-health {
+  width: 100%;
+  height: 100%;
+  background-color: green;
+}
+
+.play-again-button {
+  position: absolute;
+  left: 30%;
+  top: 50%;
+  width: 80px;
+  height: 100px;
+}
+
+a img {
+  width: 100%;
+  height: 100%;
+}
+
+a img:hover {
+  transform: scale(1.4) rotate(5deg);
+}
+
+h4 {
+  color: white;
+  text-align: center;
+  margin-top: 3px;
+}
+
 #cpu {
   width: 100px;
   height: 150px;
-  background-color: black;
+  /* background-color: black; */
 
   position: absolute;
   left: 50%;
@@ -34,9 +107,19 @@ body {
 #player {
   width: 75px;
   height: 125px;
-  background-color: green;
-  
+  /* background-color: green; */
+
   position: absolute;
-  left: 47%;
+  left: 50%;
   top: 50%;
+}
+
+.player-img {
+  width: 100%;
+  height: 100%;
+}
+
+.cpu-img {
+  width: 100%;
+  height: 100%;
 }

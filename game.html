@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <title>Stefan's Punch-Out!</title>
+  </head>
+  <body>
+
+    <embed name="Game Music" src="sounds/Punch-out-theme.mp3" loop="true" hidden="true" autostart="true" playlist="">
+
+    <audio id="jab" src="sounds/jab.mp3"></audio>
+    <audio id="cross" src="sounds/Cross.mp3"></audio>
+    <audio id="right-hook" src="sounds/Right-Hook.mp3"></audio>
+    <audio id="upper-cut" src="sounds/Upper-Cut.mp3"></audio>
+
+    <div class="game-window">
+
+      <div class="game-bar">
+        <div class="top">
+          <h3 class="player-name">Little-Mac</h3>
+          <div class="hp-bar" id="player-hp"><div class="p-health"></div></div>
+        </div>
+        <div class="top">
+          <h3 class="cpu-name">Iron-Mike</h3>
+          <div class="hp-bar" id="cpu-hp"><div class="c-health"></div></div>
+        </div>
+      </div>
+
+      <div class="play-again-button hide">
+        <a href="game.html"><img src="images/mario-sprite2.png" alt="play-again"></a>
+        <h4>Click Mario to play again</h4>
+      </div>
+
+      <div class="fighter" id="cpu">
+        <img class="cpu-img" src="images/mike-3.png" alt="Iron-Mike">
+      </div>
+      <div class="fighter" id="player">
+        <img class="player-img" src="images/little-mac-1.png" alt="little-mac">
+      </div>
+    </div>
+
+  </body>
+</html>
