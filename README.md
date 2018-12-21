@@ -8,6 +8,8 @@ A simple boxing game based on NES Punch-out, built to run in the browser.
 >
 >The aim of the game is the sweet science of boxing...hit and don't get hit
 
+## Link to Game
+
 [Click here to play](https://s-stefan.github.io/punch-out-game/)
 
 ## Controls
